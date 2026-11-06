@@ -1,0 +1,909 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Church UI Sections Showcase — Holy Rosary Church | Church.lk</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛪</text></svg>">
+  <style>
+    .ui-showcase-hero {
+      background: linear-gradient(135deg, #0A1B30 0%, #15469E 100%);
+      color: white;
+      padding: 40px 0 32px;
+      border-bottom: 3px solid #D4942A;
+    }
+    .ui-showcase-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(212, 148, 42, 0.2); border: 1px solid #D4942A;
+      color: #F8D58A; padding: 4px 12px; border-radius: 999px;
+      font-size: 0.76rem; font-weight: 700; text-transform: uppercase;
+      margin-bottom: 12px; letter-spacing: 0.05em;
+    }
+    .ui-showcase-title {
+      font-family: var(--font-serif); font-size: 2.1rem; font-weight: 800;
+      margin: 0 0 8px; color: #FFFFFF;
+    }
+    .ui-showcase-subtitle {
+      font-size: 0.95rem; color: rgba(255, 255, 255, 0.85);
+      max-width: 800px; margin: 0 0 20px; line-height: 1.5;
+    }
+    .ui-toolbar {
+      background: white; border-bottom: 1px solid #E2E8F0;
+      padding: 14px 0; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 10px rgba(16, 42, 76, 0.06);
+    }
+    .ui-toolbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .ui-filter-pills {
+      display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+    }
+    .filter-chip {
+      padding: 6px 14px; border-radius: 999px; border: 1px solid #CBD5E1;
+      background: #F8FAFC; color: #334155; font-size: 0.80rem;
+      font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+    }
+    .filter-chip:hover, .filter-chip.active {
+      background: #15469E; color: white; border-color: #15469E;
+    }
+    .viewport-toggle {
+      display: inline-flex; background: #F1F5F9; border-radius: 8px;
+      padding: 3px; gap: 4px;
+    }
+    .viewport-btn {
+      padding: 5px 12px; border-radius: 6px; border: none;
+      background: transparent; color: #475569; font-size: 0.78rem;
+      font-weight: 700; cursor: pointer; transition: all 0.15s ease;
+    }
+    .viewport-btn.active {
+      background: white; color: #0F172A; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .ui-card-container {
+      background: white; border: 1px solid #E2E8F0;
+      border-radius: 12px; padding: 24px; margin-bottom: 32px;
+      box-shadow: 0 2px 10px rgba(16, 42, 76, 0.04);
+    }
+    .ui-card-header-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid #F1F5F9;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .ui-card-tag {
+      font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 4px; background: #FEF3C7; color: #92400E;
+      letter-spacing: 0.05em;
+    }
+    .ui-card-title-meta {
+      font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+      color: #102A4C; margin: 0;
+    }
+    .ui-actions-group { display: flex; gap: 8px; }
+    .btn-action-sm {
+      padding: 5px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 600;
+      border: 1px solid #CBD5E1; background: white; color: #334155;
+      cursor: pointer; transition: all 0.15s ease;
+    }
+    .btn-action-sm:hover { background: #F8FAFC; border-color: #94A3B8; }
+    .interactive-note {
+      font-size: 0.76rem; color: #64748B; background: #F8FAFC;
+      border-left: 3px solid #D4942A; padding: 6px 12px; border-radius: 0 4px 4px 0;
+      margin-bottom: 16px;
+    }
+    .viewport-canvas {
+      transition: max-width 0.3s ease; margin: 0 auto; width: 100%;
+    }
+    .viewport-canvas.tablet { max-width: 768px !important; }
+    .viewport-canvas.mobile { max-width: 390px !important; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-church">
+          <svg width="34" height="36" viewBox="0 0 34 36" fill="none"><line x1="17" y1="2" x2="17" y2="9" stroke="#15469E" stroke-width="2"/><line x1="14" y1="4.5" x2="20" y2="4.5" stroke="#15469E" stroke-width="2"/><polyline points="10,14 17,9 24,14" stroke="#15469E" stroke-width="2"/><line x1="10" y1="14" x2="10" y2="34" stroke="#15469E" stroke-width="2"/><line x1="24" y1="14" x2="24" y2="34" stroke="#15469E" stroke-width="2"/><path d="M14 34V24C14 22.3 15.3 21 17 21C18.7 21 20 22.3 20 24V34" stroke="#15469E" stroke-width="2"/><line x1="3" y1="18" x2="10" y2="18" stroke="#15469E" stroke-width="2"/><line x1="3" y1="18" x2="3" y2="34" stroke="#15469E" stroke-width="2"/><line x1="24" y1="18" x2="31" y2="18" stroke="#15469E" stroke-width="2"/><line x1="31" y1="18" x2="31" y2="34" stroke="#15469E" stroke-width="2"/><line x1="1" y1="34" x2="33" y2="34" stroke="#15469E" stroke-width="2"/></svg>
+        </div>
+        <div class="brand-text-col">
+          <div class="brand-title">Church<span>.lk</span></div>
+          <div class="brand-tagline">CHURCHES • MASSES • FEASTS • FAITH</div>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-item"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="find-a-church.html">Holy Rosary Church</a></li>
+          <li class="nav-item"><a href="mass-times.html">Mass Times</a></li>
+          <li class="nav-item"><a href="feast-days.html">Feast Days</a></li>
+          <li class="nav-item"><a href="church-ui-sections.html" class="active" style="color:#C4892C;font-weight:700;">UI Sections Library</a></li>
+          <li class="nav-item"><a href="shop.html">Shop</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="find-a-church.html" class="btn-primary-gold" style="padding:6px 16px; font-size:0.82rem;">View Full Page &rarr;</a>
+      </div>
+    </div>
+  </header>
+  <!-- Showcase Hero -->
+  <section class="ui-showcase-hero">
+    <div class="container">
+      <div class="ui-showcase-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Authentic Client UI Components</div>
+      <h1 class="ui-showcase-title">Parish UI Sections Design System</h1>
+      <p class="ui-showcase-subtitle">Interactive, pixel-perfect development of the 7 parish sections requested by the client: <strong>Photo Gallery</strong>, <strong>Nearby Churches in Colombo 02</strong>, <strong>At a Glance</strong>, <strong>Today at the Church</strong>, <strong>Weekly Devotions</strong>, <strong>Location</strong>, and <strong>Friday Novena and Mass</strong>.</p>
+    </div>
+  </section>
+  <!-- Sticky Filter & Viewport Bar -->
+  <div class="ui-toolbar">
+    <div class="container">
+      <div class="ui-toolbar-inner">
+        <div class="ui-filter-pills">
+          <span style="font-size:0.78rem;font-weight:700;color:#64748B;margin-right:4px;">Filter:</span>
+          <button class="filter-chip active" onclick="filterSections('all')">All 7 Sections</button>
+          <button class="filter-chip" onclick="filterSections('novena')">Friday Novena &amp; Mass</button>
+          <button class="filter-chip" onclick="filterSections('glance')">At a Glance</button>
+          <button class="filter-chip" onclick="filterSections('today')">Today at the Church</button>
+          <button class="filter-chip" onclick="filterSections('devotions')">Weekly Devotions</button>
+          <button class="filter-chip" onclick="filterSections('location')">Location</button>
+          <button class="filter-chip" onclick="filterSections('gallery')">Photo Gallery</button>
+          <button class="filter-chip" onclick="filterSections('nearby')">Nearby Churches</button>
+        </div>
+        <div class="viewport-toggle">
+          <button class="viewport-btn active" onclick="setViewport('desktop')">Desktop (1200px)</button>
+          <button class="viewport-btn" onclick="setViewport('tablet')">Tablet (768px)</button>
+          <button class="viewport-btn" onclick="setViewport('mobile')">Mobile (390px)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main class="container" style="padding-top: 30px; padding-bottom: 50px;">
+    <div id="viewport-canvas" class="viewport-canvas">
+      <!-- SECTION 1: FRIDAY NOVENA AND MASS -->
+      <div class="ui-card-container section-block" id="section-novena">
+        <div class="ui-card-header-bar">
+          <div>
+            <span class="ui-card-tag">Section 1 • Liturgical Schedule UI</span>
+            <h2 class="ui-card-title-meta" style="margin-top:4px;">Friday Novena and Mass</h2>
+          </div>
+          <div class="ui-actions-group">
+            <button class="btn-action-sm" onclick="copySectionCode('code-novena')">Copy HTML</button>
+          </div>
+        </div>
+        <div class="interactive-note">
+          <strong>Interactive Feature:</strong> Filter masses below by language (English, Sinhala, Tamil, Benediction) or see the live <strong>NEXT MASS</strong> badge indicator!
+        </div>
+        <div class="novena-lang-filter-bar">
+          <span style="font-size:0.75rem;font-weight:700;color:#78654D;line-height:24px;">Filter by Language:</span>
+          <button class="novena-filter-pill active" onclick="filterNovenaLang('all', this)">All (11 Services)</button>
+          <button class="novena-filter-pill" onclick="filterNovenaLang('english', this)">English (7)</button>
+          <button class="novena-filter-pill" onclick="filterNovenaLang('sinhala', this)">Sinhala (2)</button>
+          <button class="novena-filter-pill" onclick="filterNovenaLang('tamil', this)">Tamil (2)</button>
+          <button class="novena-filter-pill" onclick="filterNovenaLang('benediction', this)">Benediction (1)</button>
+        </div>
+        <!-- The Component UI (100% Exact to media_1793898350969_49741567.jpg) -->
+        <div class="friday-novena-card" id="code-novena">
+          <div class="novena-card-layout">
+            <div class="novena-media-col">
+              <img src="images/holy_rosary_friday_novena.png" alt="Friday Novena Crucifix and Candles" loading="lazy">
+            </div>
+            <div class="novena-content-col">
+              <div class="novena-card-header">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2c-1.5 2.5-2 5-2 7 0 3 1.5 5 2 7 0.5-2 2-4 2-7 0-2-0.5-4.5-2-7z"/>
+                  <path d="M8 12c1 1.5 2 3 3 5"/><path d="M16 12c-1 1.5-2 3-3 5"/>
+                </svg>
+                Friday Novena and Mass
+              </div>
+              <div class="novena-schedule-2col">
+                <div class="novena-col-left">
+                  <div class="novena-row-item" data-lang="sinhala tamil"><span class="novena-time-str">6.30 a.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">Sinhala &amp; Tamil</span></div>
+                  <div class="novena-row-item" data-lang="english"><span class="novena-time-str">7.30 a.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">English</span></div>
+                  <div class="novena-row-item" data-lang="english"><span class="novena-time-str">8.30 a.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">English</span></div>
+                  <div class="novena-row-item" data-lang="sinhala"><span class="novena-time-str">9.30 a.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">Sinhala</span></div>
+                  <div class="novena-row-item" data-lang="tamil"><span class="novena-time-str">10.30 a.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">Tamil</span></div>
+                  <div class="novena-row-item" data-lang="english"><span class="novena-time-str">11.30 a.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">English</span></div>
+                </div>
+                <div class="novena-col-right">
+                  <div class="novena-row-item" data-lang="english"><span class="novena-time-str">12.30 p.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">English</span></div>
+                  <div class="novena-row-item" data-lang="benediction"><span class="novena-time-str">4.30 p.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">Benediction</span></div>
+                  <div class="novena-row-item" data-lang="english"><span class="novena-time-str">5.30 p.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">English</span></div>
+                  <div class="novena-row-item" data-lang="english"><span class="novena-time-str">6.30 p.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">English</span></div>
+                  <div class="novena-row-item" data-lang="english"><span class="novena-time-str">7.30 p.m.</span><span class="novena-dash">–</span><span class="novena-lang-str">English</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SECTION 2: AT A GLANCE -->
+      <div class="ui-card-container section-block" id="section-glance">
+        <div class="ui-card-header-bar">
+          <div>
+            <span class="ui-card-tag">Section 2 • Parish Snapshot UI</span>
+            <h2 class="ui-card-title-meta" style="margin-top:4px;">At a Glance</h2>
+          </div>
+          <div class="ui-actions-group">
+            <button class="btn-action-sm" onclick="copySectionCode('code-glance')">Copy HTML</button>
+          </div>
+        </div>
+        <div class="interactive-note">
+          <strong>Interactive Features:</strong> Click address to copy, click phone to call, click statue photo to view high-res in Lightbox, plus real-time operating status pill!
+        </div>
+        <div style="max-width: 380px; margin: 0 auto;">
+          <div class="church-sidebar-card" id="code-glance">
+            <div class="church-card-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="2" x2="12" y2="6"/><line x1="10" y1="3.5" x2="14" y2="3.5"/>
+                <polyline points="7,10 12,6 17,10"/><line x1="7" y1="10" x2="7" y2="22"/><line x1="17" y1="10" x2="17" y2="22"/>
+                <path d="M10 22v-6c0-1.1.9-2 2-2s2 .9 2 2v6"/><line x1="3" y1="13" x2="7" y2="13"/><line x1="3" y1="13" x2="3" y2="22"/>
+                <line x1="17" y1="13" x2="21" y2="13"/><line x1="21" y1="13" x2="21" y2="22"/><line x1="2" y1="22" x2="22" y2="22"/>
+              </svg>
+              <h3 class="church-card-title">At a Glance</h3>
+            </div>
+            <div class="at-a-glance-body">
+              <div class="glance-details-col">
+                <div class="glance-row" style="cursor:pointer;" onclick="copyAddressText()" title="Click to copy address">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span id="church-addr-text">55, Justice Akbar Mawatha,<br>Slave Island, Colombo 02, Sri Lanka</span>
+                </div>
+                <div class="glance-row">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg>
+                  <a href="tel:+94112320158">+94 11 232 0158</a>
+                </div>
+                <div class="glance-row">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2L2 9h3v12h5v-6h4v6h5V9h3L12 2z"/></svg>
+                  <span>The Golden Shrine of the Infant Jesus (Catholic Shrine)</span>
+                </div>
+                <div class="glance-row">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                  <span>Archdiocese of Colombo</span>
+                </div>
+                <div class="glance-row">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                  <span>Visitor Hours: <strong>6:00 AM – 8:30 PM</strong> <span id="live-open-pill" class="open-status-pill"><span class="status-dot"></span> Open Now</span></span>
+                </div>
+              </div>
+              <div class="glance-statue-box" title="The Golden Shrine - Infant Jesus of Prague (Click to zoom)" onclick="openLightbox(2)">
+                <img src="images/holy_rosary_at_glance_hires.jpg" alt="Statue of Infant Jesus of Prague" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SECTION 3: TODAY AT THE CHURCH -->
+      <div class="ui-card-container section-block" id="section-today">
+        <div class="ui-card-header-bar">
+          <div>
+            <span class="ui-card-tag">Section 3 • Daily Liturgy Card UI</span>
+            <h2 class="ui-card-title-meta" style="margin-top:4px;">Today at the Church</h2>
+          </div>
+          <div class="ui-actions-group">
+            <button class="btn-action-sm" onclick="copySectionCode('code-today')">Copy HTML</button>
+          </div>
+        </div>
+        <div class="interactive-note">
+          <strong>Interactive Feature:</strong> Test any day of the week to see the live liturgical schedule adapt dynamically!
+        </div>
+        <div style="display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; justify-content:center;">
+          <button class="filter-chip" onclick="setSimulatedDay('Monday', this)">Mon</button>
+          <button class="filter-chip" onclick="setSimulatedDay('Tuesday', this)">Tue</button>
+          <button class="filter-chip" onclick="setSimulatedDay('Wednesday', this)">Wed</button>
+          <button class="filter-chip" onclick="setSimulatedDay('Thursday', this)">Thu</button>
+          <button class="filter-chip active" onclick="setSimulatedDay('Friday', this)">Fri (Novena)</button>
+          <button class="filter-chip" onclick="setSimulatedDay('Saturday', this)">Sat</button>
+          <button class="filter-chip" onclick="setSimulatedDay('Sunday', this)">Sun (4 Masses)</button>
+        </div>
+        <div style="max-width: 380px; margin: 0 auto;">
+          <div class="church-sidebar-card" id="code-today">
+            <div class="church-card-header header-gold">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <h3 class="church-card-title">Today at the Church</h3>
+            </div>
+            <div class="today-church-body">
+              <p id="today-church-dynamic-text" class="today-church-info-text">
+                Please check the Mass Times section for today's schedule.
+              </p>
+              <div class="today-church-icon-wrap">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><circle cx="8" cy="14" r="1" fill="currentColor"></circle><circle cx="12" cy="14" r="1" fill="currentColor"></circle><circle cx="16" cy="14" r="1" fill="currentColor"></circle><circle cx="8" cy="18" r="1" fill="currentColor"></circle><circle cx="12" cy="18" r="1" fill="currentColor"></circle><circle cx="16" cy="18" r="1" fill="currentColor"></circle></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SECTION 4: WEEKLY DEVOTIONS -->
+      <div class="ui-card-container section-block" id="section-devotions">
+        <div class="ui-card-header-bar">
+          <div>
+            <span class="ui-card-tag">Section 4 • Devotions Card UI</span>
+            <h2 class="ui-card-title-meta" style="margin-top:4px;">Weekly Devotions</h2>
+          </div>
+          <div class="ui-actions-group">
+            <button class="btn-action-sm" onclick="copySectionCode('code-devotions')">Copy HTML</button>
+          </div>
+        </div>
+        <div class="interactive-note">
+          <strong>Devotion Schedule:</strong> Wednesday Perpetual Help Novena &amp; Friday All-Day Masses with calendar reminder integration.
+        </div>
+        <div style="max-width: 380px; margin: 0 auto;">
+          <div class="church-sidebar-card" id="code-devotions">
+            <div class="church-card-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2c-1.5 2.5-2 5-2 7 0 3 1.5 5 2 7 0.5-2 2-4 2-7 0-2-0.5-4.5-2-7z"/>
+                <path d="M8 12c1 1.5 2 3 3 5"/><path d="M16 12c-1 1.5-2 3-3 5"/>
+              </svg>
+              <h3 class="church-card-title">Weekly Devotions</h3>
+            </div>
+            <div class="devotions-clean-list">
+              <div class="devotion-item-clean">
+                <div class="devotion-thumb-rounded"><img src="images/holy_rosary_perpetual_icon.png" alt="Our Lady of Perpetual Help Icon"></div>
+                <div class="devotion-info-clean"><div class="devotion-title-clean">Wednesday 5.30 p.m.</div><p class="devotion-desc-clean">Holy Rosary followed by Our Lady of Perpetual Help Novena &amp; Mass (Sinhala &amp; Tamil)</p></div>
+              </div>
+              <div class="devotion-item-clean">
+                <div class="devotion-thumb-rounded"><img src="images/holy_rosary_candles_icon.png" alt="Friday Novena Candles"></div>
+                <div class="devotion-info-clean"><div class="devotion-title-clean">Friday</div><p class="devotion-desc-clean">Novena and Mass throughout the day (See full schedule on the left)</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SECTION 5: LOCATION -->
+      <div class="ui-card-container section-block" id="section-location">
+        <div class="ui-card-header-bar">
+          <div>
+            <span class="ui-card-tag">Section 5 • Map &amp; Navigation UI</span>
+            <h2 class="ui-card-title-meta" style="margin-top:4px;">Location</h2>
+          </div>
+          <div class="ui-actions-group">
+            <button class="btn-action-sm" onclick="copyCoordinates()">Copy GPS</button>
+            <button class="btn-action-sm" onclick="copySectionCode('code-location')">Copy HTML</button>
+          </div>
+        </div>
+        <div class="interactive-note">
+          <strong>Interactive Navigation:</strong> Slave Island map crop with one-click direct Google Maps navigation link.
+        </div>
+        <div style="max-width: 380px; margin: 0 auto;">
+          <div class="church-sidebar-card" id="code-location">
+            <div class="church-card-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <h3 class="church-card-title">Location</h3>
+            </div>
+            <div class="location-clean-body">
+              <div class="location-map-wrap"><img src="images/holy_rosary_map_real.png" alt="Map of Holy Rosary Church, Slave Island, Colombo 02"></div>
+              <a href="https://maps.google.com/?q=Holy+Rosary+Church+Slave+Island+Colombo" target="_blank" rel="noopener" class="btn-open-maps-gold">
+                Open in Google Maps
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- SECTION 6: PHOTO GALLERY -->
+        <article class="ui-showcase-section" id="sec-photo-gallery">
+          <div class="ui-section-meta">
+            <div>
+              <div class="ui-section-badge">Section 06 &bull; Visual Media Strip</div>
+              <h2 class="ui-section-title">Photo Gallery</h2>
+              <p class="ui-section-desc">Full-width 6-thumbnail photo grid with high-resolution church photography, smooth hover scaling, and integrated modal Lightbox with keyboard navigation.</p>
+            </div>
+            <div class="ui-section-controls">
+              <button class="btn-tool-secondary" onclick="openLightbox(0)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                Open Lightbox
+              </button>
+              <button class="btn-copy-code" onclick="copySectionCode('code-photo-gallery', 'Photo Gallery')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy HTML
+              </button>
+            </div>
+          </div>
+
+          <div class="demo-card-container">
+            <section class="photo-gallery-section" id="code-photo-gallery">
+              <div class="photo-gallery-header">
+                <div class="photo-gallery-title-group">
+                  <svg class="photo-gallery-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                  </svg>
+                  <h2 class="photo-gallery-title">Photo Gallery</h2>
+                  <span class="photo-gallery-divider"></span>
+                </div>
+                <a href="#photo-gallery" class="photo-gallery-action" onclick="openLightbox(0); return false;">
+                  View All Photos
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+              <div class="photo-strip-grid">
+                <div class="photo-strip-item" onclick="openLightbox(0)" tabindex="0" role="button" aria-label="Church Exterior View">
+                  <img src="images/gallery_hr_1_gemini.jpg" alt="Holy Rosary Church Exterior facade under clear blue sky">
+                </div>
+                <div class="photo-strip-item" onclick="openLightbox(1)" tabindex="0" role="button" aria-label="Main Altar and Nave">
+                  <img src="images/gallery_hr_2_gemini.jpg" alt="Main Altar and Nave during quiet prayer">
+                </div>
+                <div class="photo-strip-item" onclick="openLightbox(2)" tabindex="0" role="button" aria-label="Infant Jesus of Prague Statue">
+                  <img src="images/gallery_hr_3_gemini.jpg" alt="Shrine statue of Infant Jesus of Prague in golden robes">
+                </div>
+                <div class="photo-strip-item" onclick="openLightbox(3)" tabindex="0" role="button" aria-label="Votive Candles at Shrine">
+                  <img src="images/gallery_hr_4_gemini.jpg" alt="Warm glowing prayer candles at devotion shrine">
+                </div>
+                <div class="photo-strip-item" onclick="openLightbox(4)" tabindex="0" role="button" aria-label="High Altar and Sanctuary">
+                  <img src="images/gallery_hr_5_gemini.jpg" alt="High Altar decorated with flowers and gold accents">
+                </div>
+                <div class="photo-strip-item" onclick="openLightbox(5)" tabindex="0" role="button" aria-label="Church Exterior at Dusk">
+                  <img src="images/gallery_hr_6_gemini.jpg" alt="Church exterior facade illuminated at evening">
+                </div>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <!-- SECTION 7: NEARBY CHURCHES -->
+        <article class="ui-showcase-section" id="sec-nearby-churches">
+          <div class="ui-section-meta">
+            <div>
+              <div class="ui-section-badge">Section 07 &bull; Parish Discovery Strip</div>
+              <h2 class="ui-section-title">Nearby Churches in Colombo 02</h2>
+              <p class="ui-section-desc">Responsive 4-column card grid highlighting sister Catholic parishes within walking/driving distance, with location markers, kilometer distances, and direct profile navigation buttons.</p>
+            </div>
+            <div class="ui-section-controls">
+              <button class="btn-copy-code" onclick="copySectionCode('code-nearby-churches', 'Nearby Churches')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copy HTML
+              </button>
+            </div>
+          </div>
+
+          <div class="demo-card-container">
+            <section class="nearby-churches-section" id="code-nearby-churches">
+              <div class="nearby-churches-header">
+                <div class="nearby-churches-title-group">
+                  <svg class="nearby-churches-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6a3 3 0 0 1 6 0v6M12 3v3M10 5h4"/>
+                  </svg>
+                  <h2 class="nearby-churches-title">Nearby Churches in Colombo 02</h2>
+                  <span class="nearby-churches-divider"></span>
+                </div>
+              </div>
+              <div class="nearby-churches-row">
+                <div class="nearby-church-card">
+                  <div class="nearby-church-img-wrap">
+                    <img src="images/nearby_hr_1_gemini.jpg" alt="St. Peter's Church Colombo 04">
+                  </div>
+                  <div class="nearby-church-content">
+                    <h3 class="nearby-church-name">St. Peter's Church</h3>
+                    <div class="nearby-church-meta">
+                      <div class="nearby-meta-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>Colombo 04</span>
+                      </div>
+                      <div class="nearby-meta-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>2.1 km</span>
+                      </div>
+                    </div>
+                    <a href="find-a-church.html" class="nearby-church-btn">
+                      View Church
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="nearby-church-card">
+                  <div class="nearby-church-img-wrap">
+                    <img src="images/nearby_hr_2_gemini.jpg" alt="St. Lucia's Cathedral Colombo 02">
+                  </div>
+                  <div class="nearby-church-content">
+                    <h3 class="nearby-church-name">St. Lucia's Cathedral</h3>
+                    <div class="nearby-church-meta">
+                      <div class="nearby-meta-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>Colombo 02</span>
+                      </div>
+                      <div class="nearby-meta-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>2.3 km</span>
+                      </div>
+                    </div>
+                    <a href="find-a-church.html" class="nearby-church-btn">
+                      View Church
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="nearby-church-card">
+                  <div class="nearby-church-img-wrap">
+                    <img src="images/nearby_hr_3_gemini.jpg" alt="St. Joseph's Church Slave Island">
+                  </div>
+                  <div class="nearby-church-content">
+                    <h3 class="nearby-church-name">St. Joseph's Church</h3>
+                    <div class="nearby-church-meta">
+                      <div class="nearby-meta-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>Slave Island</span>
+                      </div>
+                      <div class="nearby-meta-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>1.5 km</span>
+                      </div>
+                    </div>
+                    <a href="find-a-church.html" class="nearby-church-btn">
+                      View Church
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="nearby-church-card">
+                  <div class="nearby-church-img-wrap">
+                    <img src="images/nearby_hr_4_gemini.jpg" alt="All Saints' Church Colombo 02">
+                  </div>
+                  <div class="nearby-church-content">
+                    <h3 class="nearby-church-name">All Saints' Church</h3>
+                    <div class="nearby-church-meta">
+                      <div class="nearby-meta-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>Colombo 02</span>
+                      </div>
+                      <div class="nearby-meta-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>2.8 km</span>
+                      </div>
+                    </div>
+                    <a href="find-a-church.html" class="nearby-church-btn">
+                      View Church
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </article>
+
+      </div> <!-- /#viewport-canvas -->
+    </div> <!-- /.ui-viewport-wrapper -->
+  </main>
+
+  <!-- Fullscreen Photo Lightbox -->
+  <div id="church-lightbox" class="church-lightbox-overlay" onclick="if(event.target === this) closeLightbox();" role="dialog" aria-modal="true" aria-label="Photo Gallery Lightbox">
+    <div class="church-lightbox-dialog">
+      <button class="church-lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">&times;</button>
+      <div class="church-lightbox-stage">
+        <button class="church-lightbox-prev" onclick="changeLightboxImage(-1)" aria-label="Previous photo">&#10094;</button>
+        <img id="church-lightbox-img" src="" alt="Enlarged Church Photo">
+        <button class="church-lightbox-next" onclick="changeLightboxImage(1)" aria-label="Next photo">&#10095;</button>
+      </div>
+      <div class="church-lightbox-caption">
+        <span id="church-lightbox-title" class="lightbox-title-text"></span>
+        <span id="church-lightbox-counter" class="lightbox-counter-badge">1 / 6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="copy-toast" style="position:fixed;bottom:28px;right:28px;background:#1B365D;color:#fff;padding:12px 22px;border-radius:10px;font-size:0.9rem;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,0.25);display:none;z-index:99999;align-items:center;gap:10px;border-left:4px solid #C5A059;transition:all 0.3s ease;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toast-text">HTML code snippet copied to clipboard!</span>
+  </div>
+
+  <!-- Footer -->
+    <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main-grid">
+        <!-- Col 1: Brand & Mission -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 8px;">
+            <div class="brand-icon-church">
+              <svg width="34" height="36" viewBox="0 0 34 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="17" y1="2" x2="17" y2="9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                <line x1="14" y1="4.5" x2="20" y2="4.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                <polyline points="10,14 17,9 24,14" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="10" y1="14" x2="10" y2="34" stroke="#FFFFFF" stroke-width="2"/>
+                <line x1="24" y1="14" x2="24" y2="34" stroke="#FFFFFF" stroke-width="2"/>
+                <path d="M14 34V24C14 22.3431 15.3431 21 17 21C18.6569 21 20 22.3431 20 24V34" stroke="#FFFFFF" stroke-width="2"/>
+                <line x1="3" y1="18" x2="10" y2="18" stroke="#FFFFFF" stroke-width="2"/>
+                <line x1="3" y1="18" x2="3" y2="34" stroke="#FFFFFF" stroke-width="2"/>
+                <line x1="6.5" y1="22" x2="6.5" y2="30" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="24" y1="18" x2="31" y2="18" stroke="#FFFFFF" stroke-width="2"/>
+                <line x1="31" y1="18" x2="31" y2="34" stroke="#FFFFFF" stroke-width="2"/>
+                <line x1="27.5" y1="22" x2="27.5" y2="30" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="1" y1="34" x2="33" y2="34" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="brand-text-col">
+              <div class="brand-title" style="color:white;">Church<span>.lk</span></div>
+              <div class="brand-tagline" style="color:rgba(255,255,255,0.45);">CHURCHES • MASSES • NOVENAS • FAITH</div>
+            </div>
+          </a>
+          <p class="footer-mission-text">
+            Connecting the Catholic community in Sri Lanka. Churches, Masses, Novenas and Faith &mdash;
+            together for a stronger community in Christ.
+          </p>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-nav-list">
+            <li><a href="find-a-church.html">Find a Church</a></li>
+            <li><a href="mass-times.html">Mass Times</a></li>
+            <li><a href="feast-days.html">Novenas &amp; Feasts</a></li>
+            <li><a href="church-ui-sections.html">UI Sections Library</a></li>
+            <li><a href="shop.html">Shop</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Dioceses in Sri Lanka -->
+        <div>
+          <h4 class="footer-col-title">Dioceses in Sri Lanka</h4>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px 16px;">
+            <ul class="footer-nav-list">
+              <li><a href="find-a-church.html">Colombo</a></li>
+              <li><a href="find-a-church.html">Kandy</a></li>
+              <li><a href="find-a-church.html">Galle</a></li>
+              <li><a href="find-a-church.html">Jaffna</a></li>
+              <li><a href="find-a-church.html">Trincomalee</a></li>
+            </ul>
+            <ul class="footer-nav-list">
+              <li><a href="find-a-church.html">Kurunegala</a></li>
+              <li><a href="find-a-church.html">Ratnapura</a></li>
+              <li><a href="find-a-church.html">Anuradhapura</a></li>
+              <li><a href="find-a-church.html">Badulla</a></li>
+              <li><a href="find-a-church.html">Mannar</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Col 4: Support -->
+        <div>
+          <h4 class="footer-col-title">Support</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#">Submit a Church</a></li>
+            <li><a href="#">Update Information</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Follow Us -->
+        <div>
+          <h4 class="footer-col-title">Follow Us</h4>
+          <div class="footer-social-row" style="margin-bottom: 20px;">
+            <a href="#" class="social-circle-btn" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-circle-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="social-circle-btn" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.53l5.9 3.25-5.9 3.24z"/>
+              </svg>
+            </a>
+          </div>
+          <div style="opacity: 0.3; filter: grayscale(1);">
+            <svg width="110" height="40" viewBox="0 0 110 40" fill="none" stroke="white" stroke-width="1.2">
+              <path d="M10 38V22l10-8 10 8v16M20 14V6l4-3 4 3v8M50 38V16l15-10 15 10v22M65 6V2M80 38V26l8-6 8 6v12M95 38V20l7-5 7 5v18" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-flex">
+          <div>&copy; 2026 Church.lk. All rights reserved.</div>
+          <div class="spiritual-motto">Faith &bull; Community &bull; Service</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Logic -->
+  <script>
+    const galleryItems = [
+      { src: 'images/gallery_hr_1_gemini.jpg', title: 'Holy Rosary Church - Exterior Facade under Clear Sky' },
+      { src: 'images/gallery_hr_2_gemini.jpg', title: 'Holy Rosary Church - Main Altar and Pews in Nave' },
+      { src: 'images/gallery_hr_3_gemini.jpg', title: 'Golden Shrine - Infant Jesus of Prague Crowned Statue' },
+      { src: 'images/gallery_hr_4_gemini.jpg', title: 'Votive Candle Shrine - Prayer Intention Candles' },
+      { src: 'images/gallery_hr_5_gemini.jpg', title: 'Sanctuary High Altar - Holy Eucharistic Chapel' },
+      { src: 'images/gallery_hr_6_gemini.jpg', title: 'Church Exterior - Illuminated Facade at Dusk' }
+    ];
+
+    let currentLightboxIdx = 0;
+
+    function openLightbox(idx) {
+      currentLightboxIdx = idx;
+      updateLightboxDisplay();
+      const lb = document.getElementById('church-lightbox');
+      if (lb) {
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('church-lightbox');
+      if (lb) {
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function changeLightboxImage(dir) {
+      currentLightboxIdx = (currentLightboxIdx + dir + galleryItems.length) % galleryItems.length;
+      updateLightboxDisplay();
+    }
+
+    function updateLightboxDisplay() {
+      const img = document.getElementById('church-lightbox-img');
+      const title = document.getElementById('church-lightbox-title');
+      const counter = document.getElementById('church-lightbox-counter');
+      if (img && title && counter) {
+        const item = galleryItems[currentLightboxIdx];
+        img.src = item.src;
+        img.alt = item.title;
+        title.textContent = item.title;
+        counter.textContent = (currentLightboxIdx + 1) + ' / ' + galleryItems.length;
+      }
+    }
+
+    window.addEventListener('keydown', function(e) {
+      const lb = document.getElementById('church-lightbox');
+      if (!lb || !lb.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+      if (e.key === 'ArrowRight') changeLightboxImage(1);
+    });
+
+    function setViewport(size) {
+      const canvas = document.getElementById('viewport-canvas');
+      const btns = document.querySelectorAll('.viewport-btn');
+      btns.forEach(b => b.classList.remove('active'));
+      
+      if (size === 'desktop') {
+        canvas.style.maxWidth = '1200px';
+        btns[0].classList.add('active');
+      } else if (size === 'tablet') {
+        canvas.style.maxWidth = '768px';
+        btns[1].classList.add('active');
+      } else if (size === 'mobile') {
+        canvas.style.maxWidth = '390px';
+        btns[2].classList.add('active');
+      }
+    }
+
+    function filterSections(targetSec) {
+      const chips = document.querySelectorAll('.ui-filter-chip');
+      chips.forEach(c => c.classList.remove('active'));
+      if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.classList.add('active');
+      }
+
+      const sections = document.querySelectorAll('.ui-showcase-section');
+      sections.forEach(sec => {
+        if (targetSec === 'all' || sec.id === targetSec) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    }
+
+    function filterNovenaLang(lang, btn) {
+      const btns = btn.parentElement.querySelectorAll('.btn-tool-secondary');
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const rows = document.querySelectorAll('#novena-table-container .novena-time-row');
+      rows.forEach(r => {
+        const rowLang = r.getAttribute('data-lang') || '';
+        if (lang === 'all' || rowLang.includes(lang)) {
+          r.style.display = 'flex';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+
+    const daySchedules = {
+      'Friday': {
+        lead: 'Special Novena and Mass services ongoing throughout today:',
+        sub: 'Infant Jesus Perpetual Novena held every hour from 6:30 a.m. to 7:30 p.m. (Full timetable detailed in Friday Novena section).'
+      },
+      'Sunday': {
+        lead: 'Sunday Eucharistic Celebrations & Masses:',
+        sub: '6:30 a.m. (Tamil) &bull; 8:00 a.m. (Sinhala) &bull; 9:30 a.m. (English) &bull; 6:30 p.m. (English Evening Mass).'
+      },
+      'Wednesday': {
+        lead: 'Midweek Novena & Masses:',
+        sub: '7:30 a.m. Morning Mass (English) &bull; 5:30 p.m. Holy Rosary & Our Lady of Perpetual Help Novena & Mass (Sinhala & Tamil).'
+      },
+      'Monday': {
+        lead: 'Weekday Morning Liturgy:',
+        sub: '7:30 a.m. Holy Mass (English). Adoration Chapel open for silent meditation.'
+      }
+    };
+
+    function setSimulatedDay(day, btn) {
+      const btns = btn.parentElement.querySelectorAll('.btn-tool-secondary');
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const textEl = document.getElementById('today-status-text');
+      const data = daySchedules[day] || daySchedules['Monday'];
+      if (textEl) {
+        textEl.innerHTML = '<strong>' + data.lead + '</strong><br><span style="color:#475569;">' + data.sub + '</span>';
+      }
+    }
+
+    function copySectionCode(elementId, label) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const htmlCode = el.outerHTML;
+      navigator.clipboard.writeText(htmlCode).then(() => {
+        showToast(label + ' HTML copied to clipboard!');
+      }).catch(() => {
+        showToast('Unable to copy automatically. Please select text manually.');
+      });
+    }
+
+    function copyGlanceInfo(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const origText = btn.innerHTML;
+        btn.innerHTML = 'Copied!';
+        btn.style.color = '#22c55e';
+        showToast('\"' + text + '\" copied to clipboard!');
+        setTimeout(() => {
+          btn.innerHTML = origText;
+          btn.style.color = '';
+        }, 2000);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('copy-toast');
+      const text = document.getElementById('toast-text');
+      if (toast && text) {
+        text.textContent = msg;
+        toast.style.display = 'flex';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 3000);
+      }
+    }
+
+    function updateVisitorHoursStatus() {
+      const badge = document.getElementById('glance-status-badge');
+      if (!badge) return;
+      const now = new Date();
+      const hours = now.getHours();
+      const mins = now.getMinutes();
+      const totalMins = hours * 60 + mins;
+      if (totalMins >= 360 && totalMins <= 1230) {
+        badge.textContent = 'Open Now';
+        badge.style.background = '#dcfce7';
+        badge.style.color = '#15803d';
+      } else {
+        badge.textContent = 'Closed Now';
+        badge.style.background = '#fee2e2';
+        badge.style.color = '#b91c1c';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateVisitorHoursStatus();
+    });
+  </script>
+</body>
+</html>
